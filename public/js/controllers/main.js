@@ -76,13 +76,17 @@
       var kickCheck = '/kick=';
       var skipCheck = '/skipcurrent';
       var themeCheck = '/theme=';
+      var slapCheck = '/slap '
 
       // user is registering as an admin
       if (c.message.indexOf(adminCheck) > -1) {
         socket.emit('adminStatusRequested', c.message.split(adminCheck)[1]);
         return;
       }
-
+      // user is slapping another
+      if( c.message.indexof(slapCheck) > -1 ) {
+        socket.emit('userSlapRequested', c.message.split(slapCheck)[1])
+      }
       // user is changing theme
       if (c.message.indexOf(themeCheck) > -1) {
         socket.emit('themeUpdated', c.message.split(themeCheck)[1]);
